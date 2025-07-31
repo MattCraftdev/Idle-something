@@ -1,15 +1,19 @@
 .progress-container {
-  width: 50%;
-  background-color: #ddd;
-  border-radius: 8px;
-  height: 30px;
-  margin: 10px 0;
-}
+    width: 300px;
+    background-color: #ddd;
+    height: 30px;
+    margin: 10px 0;
+    }
 
 .progress-bar {
-  height: 100%;
-  width: 0%;
-  background-color: #4caf50;
-  border-radius: 8px;
-  transition: width 0.2s ease;
+    height: 100%;
+    width: 0%;
+    background-color: #4caf50;
+    transition:all;
+}
+
+#border {
+    border:10px solid blue;
+    padding: 20px;
+    margin: 10px;
 }
