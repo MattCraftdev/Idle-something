@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>insert name ofc</title>
+    <title>Vampire Idle..Or something</title>
 </head>
 
 <body>
 
     <h1>Vampire.</h1>
 
-    <div id = "border">
+    <div class = "tabs"> <!-- Buttons that hold the tabs  -->
+        <button class="tab-button" data-tab = "training">Training</button>
+        <button class="tab-button" data-tab = "combat">Combat</button>
+    </div>
+        
+
+    <div id = "training" class = "tab-content"> <!-- Border that holds all the training together-->
     
-        <button title = "Relax increase your mana generation speed" id = "button1">Relax</button>
+        <button title = "Relax increase your mana generation speed" id = "relaxbtn">Relax</button>
 
         <div class="progress-container">
             <div class="progress-bar" id="growrelax"></div>
@@ -20,20 +26,40 @@
 
         <p id = "relaxLevelDisplay">Relax Level: 1</p>
         
-        <button title = "Focus will increase your learning speed on other subjects" id = "button2">Focus</button>
+        <button title = "Focus will increase your learning speed on other subjects" id = "focusbtn">Focus</button>
 
         <div class="progress-container">
             <div class="progress-bar" id="growfocus"></div>
-
         </div>
         
         <p id = "focusLevelDisplay">Focus Level: 1</p> 
 
-        <div>
+        <button title = "You're poor, and are learning how to fight" id = "weaponlessbtn">Weaponless combat</button>
 
-
-
+        <div class = "progress-container">
+            <div class = "progress-bar" id ="weaponless"></div>
         </div>
+
+        <p id = "weaponlessLevelDisplay">Weaponless Level: 1</p>
+
+        
+    </div>
+
+    <div id = "combat" class = "tab-content"> <!-- Combat tab  -->
+        <button id = "attack1">test</button>
+        <p id = "Playerhp"></p>
+        <p id = "Playermana"></p>
+        <p id = "Playeratk"></p>
+        <p id = "Playerdef"></p>
+        <p id = "Playerlvl"></p>
+        <p id = "Playerxp"></p>
+
+        <p id = "Targethp"></p>
+        <p id = "Targetmana"></p>
+        <p id = "Targetatk"></p>
+        <p id = "Targetdef"></p>
+        <p id = "Targetlvl"></p>
+        <p id = "Targetxp"></p>        
 
 
     </div>

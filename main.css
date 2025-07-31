@@ -1,3 +1,4 @@
+/* Progress bars */
 .progress-container {
     width: 300px;
     background-color: #ddd;
@@ -12,8 +13,28 @@
     transition:all;
 }
 
-#border {
+/* Tab buttons */
+.tab-button{
+    background-color:rgb(128, 128, 247);
+    font-size: 25px;
+    font-family:monospace
+}
+
+/* Border for training tab */
+#training {
     border:10px solid blue;
     padding: 20px;
     margin: 10px;
+}
+
+/* Combat Tab */
+#combat {
+    display:flex;
+    margin-right: 1rem;
+    padding: 10px;
+}
+
+#combat p {
+  display: inline-block;
+  margin: 0 0.5rem;
 }
