@@ -8,7 +8,7 @@
 
 <body>
 
-    <h1>Vampire.</h1>
+    <h1>Idle Power</h1>
 
     <div class = "tabs"> <!-- Buttons that hold the tabs  -->
         <button class="tab-button" data-tab = "training">Training</button>
@@ -16,55 +16,106 @@
     </div>
         
 
-    <div id = "training" class = "tab-content"> <!-- Border that holds all the training together-->
-    
-        <button title = "Relax increase your mana generation speed" id = "relaxbtn">Relax</button>
-
-        <div class="progress-container">
-            <div class="progress-bar" id="growrelax"></div>
-        </div>
-
-        <p id = "relaxLevelDisplay">Relax Level: 1</p>
+    <nav id = "training" class = "tab-content"> <!-- Border that holds all the training together-->
         
-        <button title = "Focus will increase your learning speed on other subjects" id = "focusbtn">Focus</button>
+        <section id = "growth">
+            <button title = "Relax increase your mana generation speed" id = "relaxbtn">Relax</button>
 
-        <div class="progress-container">
-            <div class="progress-bar" id="growfocus"></div>
-        </div>
-        
-        <p id = "focusLevelDisplay">Focus Level: 1</p> 
+            <div class="progress-container">
+                <div class="progress-bar" id="relax"></div>
+            </div>
 
-        <button title = "You're poor, and are learning how to fight" id = "weaponlessbtn">Weaponless combat</button>
+            <p id = "relaxLevelDisplay">Relax Level: 1</p>
+            
+            <button title = "Focus will increase your learning speed on other subjects" id = "focusbtn">Focus</button>
 
-        <div class = "progress-container">
-            <div class = "progress-bar" id ="weaponless"></div>
-        </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="focus"></div>
+            </div>
+            
+            <p id = "focusLevelDisplay">Focus Level: 1</p> 
+        </section>
 
-        <p id = "weaponlessLevelDisplay">Weaponless Level: 1</p>
+        <section id = "Weapons">
+            <button title = "You're poor, and are learning how to fight" id = "weaponlessbtn">Weaponless Combat</button>
 
-        
-    </div>
+            <div class = "progress-container">
+                <div class = "progress-bar" id ="weaponless"></div>
+            </div>
 
-    <div id = "combat" class = "tab-content"> <!-- Combat tab  -->
-        <button id = "attack1">test</button>
+            <p id = "weaponlessLevelDisplay">Weaponless Level: 1</p>
+
+
+            <div class = "hidden" id = "daggerinf">
+                <button title = "A decent weapon, but short range" id = "daggerbtn">Dagger Combat</button>
+
+                <div class = "progress-container">
+                    <div class = "progress-bar" id ="dagger"></div>
+                </div>
+
+                <p id = "daggerLevelDisplay">Dagger Level: 1</p>
+            </div>
+
+        </section>
+
+
+        <section id = "bloodline">
+
+            <button title = "Discover things about you, and your family" id = "discoverbtn">Discover</button>
+
+            <div class = "progress-container">
+                <div class = "progress-bar" id ="discover"></div>
+            </div>
+
+            <p id = "discoverLevelDisplay">Discover Level: 1</p>
+
+            <div class = "hidden" id = "regeninf">
+                <button title = "I feel the power coursing through me" id = "regenbtn">Regenarate</button>
+
+                <div class = "progress-container">
+                    <div class = "progress-bar" id ="regen"></div>
+                </div>
+
+                <p id = "regenLevelDisplay">Regenerate Level: 1</p>
+            </div>
+
+        </section>
+
+
+
+    </nav>
+
+
+
+
+
+    <nav id = "combat" class = "tab-content"> <!-- Combat tab  -->
+
+        <button id = "attack1">Attack</button>
+
+
         <p id = "Playerhp"></p>
+        <p id = "Playerregenrate"></p>
         <p id = "Playermana"></p>
         <p id = "Playeratk"></p>
         <p id = "Playerdef"></p>
         <p id = "Playerlvl"></p>
         <p id = "Playerxp"></p>
 
+        <p id = "Targetname"></p>
         <p id = "Targethp"></p>
+        <p id = "Targetregenrate"></p>
         <p id = "Targetmana"></p>
         <p id = "Targetatk"></p>
         <p id = "Targetdef"></p>
         <p id = "Targetlvl"></p>
         <p id = "Targetxp"></p>        
 
+    </nav>
 
-    </div>
 
 
+    <div id ="chatbox"></div>
 
 </body>
 

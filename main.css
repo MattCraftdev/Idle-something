@@ -22,9 +22,16 @@
 
 /* Border for training tab */
 #training {
-    border:10px solid blue;
+    background-color:gray;
     padding: 20px;
     margin: 10px;
+}
+
+#growth {
+    border:5px solid rgb(56, 56, 155);
+    padding: 20px;
+    margin: 10px;    
+
 }
 
 /* Combat Tab */
@@ -37,4 +44,21 @@
 #combat p {
   display: inline-block;
   margin: 0 0.5rem;
+}
+
+
+/* Chatbox */
+
+#chatbox {
+    background-color:aquamarine;
+    text-align:right;
+    padding: 5px;
+    position: fixed;
+    top: 75px;
+    right: 10px;
+    border: 2px solid rgb(137, 137, 214)
+}
+
+.hidden {
+    display: none;
 }
