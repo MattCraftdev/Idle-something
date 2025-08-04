@@ -1,9 +1,14 @@
 /* Progress bars */
 .progress-container {
-    width: 300px;
-    background-color: #ddd;
-    height: 30px;
+    width: 350px;
+    background-color: #c2c2c2;
+    height: 40px;
     margin: 10px 0;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
     }
 
 .progress-bar {
@@ -11,21 +16,44 @@
     width: 0%;
     background-color: #4caf50;
     transition:all;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
+.progress-text {
+    font-weight: bold;
+    pointer-events: none;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}    
+
+
+
 /* Tab buttons */
-.tab-button{
-    background-color:rgb(128, 128, 247);
+.tab-button {
+    position: relative;
+    background-color:rgb(104, 104, 245);
     font-size: 25px;
     font-family:monospace
 }
 
+.glow {
+    box-shadow: 0 0 10px 4px #e0ff56;
+    border: 2px solid #e0ff56;
+    transition: all 0.3 ease-in-out
+}
 /* Border for training tab */
 #training {
     background-color:gray;
     padding: 20px;
     margin: 10px;
 }
+
+
 
 #growth {
     border:5px solid rgb(56, 56, 155);
@@ -34,6 +62,19 @@
 
 }
 
+#weapons {
+    border:5px solid rgb(56, 56, 155);
+    padding: 20px;
+    margin: 10px;    
+
+}
+
+#bloodline {
+    border:5px solid rgb(56, 56, 155);
+    padding: 20px;
+    margin: 10px;    
+
+}
 /* Combat Tab */
 #combat {
     display:flex;
@@ -52,11 +93,13 @@
 #chatbox {
     background-color:aquamarine;
     text-align:right;
-    padding: 5px;
-    position: fixed;
+    padding: 10px;
     top: 75px;
-    right: 10px;
-    border: 2px solid rgb(137, 137, 214)
+    right: 50px;
+    border: 2px solid rgb(137, 137, 214);
+    line-height: 1.8;
+    width: 300px;
+    height: 250px;
 }
 
 .hidden {

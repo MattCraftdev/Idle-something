@@ -1,7 +1,4 @@
-    // Class OOP
-    
-
-
+// Class OOP for progress bars
 
 class ProgressBar {
     constructor(elementId, speed = 1, maxprogress = 100) {
@@ -22,24 +19,38 @@ class ProgressBar {
             this.level++;
             this.progress = 0;
                 // Increases exponentionally
-            this.maxprogress = this.maxprogress*1.2
+            this.maxprogress = this.maxprogress*1.2;
             if (this === focusBar) {
             updateAllSpeeds();
             }
 
             // Unlocking system
             if (discoverBar.level >= 50) {
-                document.getElementById("regeninf").classList.remove("hidden");
-                logMessage("You felt a strange sensation flow throughout your entire body")
-                logMessage("You have unlocked regeneration!")
+                document.getElementById("gainsinf").classList.remove("hidden");
+                document.getElementById("gainsstory").classList.remove("hidden");
+                newStory();
             };
-            if (weaponlessBar.level >= 25) {
+
+            // Weapon unlocks
+            if (weaponlessBar.level >= 25 && document.querySelector("#daggerinf").classList.contains("hidden")) {
                 document.getElementById("daggerinf").classList.remove("hidden");
-                logMessage("You have reached a good degree of mastery on weaponless combat")
-                logMessage("You have unlocked dagger combat!")
+                document.getElementById("daggerstory").classList.remove("hidden");
+                newStory();
             };
             
-            logMessage(`You have reached level ${this.level} in ${this.elementId}`)
+            if (daggerBar.level >= 25 && document.querySelector("#maceinf").classList.contains("hidden")) {
+                document.getElementById("maceinf").classList.remove("hidden");
+                document.getElementById("macestory").classList.remove("hidden");
+                newStory();
+            };
+
+            if (maceBar.level >= 25 && document.querySelector("#axeinf").classList.contains("hidden")) {
+                document.getElementById("axeinf").classList.remove("hidden");
+                document.getElementById("axestory").classList.remove("hidden");
+                newStory();
+            };
+
+            logMessage(`You have reached level ${this.level} in ${this.elementId}`);
             
         };
     };
@@ -61,18 +72,39 @@ function updateAllSpeeds() {
     relaxBar.speed = baseSpeed;
     weaponlessBar.speed = baseSpeed;
     daggerBar.speed = baseSpeed;
+    maceBar.speed = baseSpeed;
+    axeBar.speed = baseSpeed;
     discoverBar.speed = baseSpeed;
-    regenBar.speed = baseSpeed;
+    gainsBar.speed = baseSpeed;
 }
 
+// Unlocking new story in story (story flashes)
+let glowInterval;
+
+function newStory() {
+    document.getElementById("storybtn").classList.remove("glow");
+    clearInterval(glowInterval);
+    glowInterval = setInterval(() => {
+        document.getElementById("storybtn").classList.toggle("glow");
+    }, 500);
+};
+
+document.getElementById("storybtn").addEventListener("click", () => {
+    document.getElementById("storybtn").classList.remove("glow");
+    clearInterval(glowInterval);
+});
 
 // Progress bars
-const relaxBar = new ProgressBar("relax", 5, 200);
-const focusBar = new ProgressBar("focus", 5, 100);
-const weaponlessBar = new ProgressBar("weaponless", 5, 300);
-const daggerBar = new ProgressBar("dagger", 5, 500);
-const discoverBar = new ProgressBar("discover", 5, 100);
-const regenBar = new ProgressBar("regen", 5, 100);
+const relaxBar = new ProgressBar("relax", 10, 200);
+const focusBar = new ProgressBar("focus", 10, 100);
+
+const weaponlessBar = new ProgressBar("weaponless", 10, 300);
+const daggerBar = new ProgressBar("dagger", 10, 500);
+const maceBar = new ProgressBar("mace", 10, 600);
+const axeBar = new ProgressBar("axe", 10, 750);
+
+const discoverBar = new ProgressBar("discover", 10, 50);
+const gainsBar = new ProgressBar("gains", 10, 100);
 
 let activeBar = null;
 
@@ -90,16 +122,26 @@ function updateProgress() {
     } else if (activeBar === "weaponless") {
         weaponlessBar.update();
         document.getElementById("weaponlessLevelDisplay").innerText = "Weaponless Level: " + weaponlessBar.getLevel();
-        player.atk = 10 + weaponlessBar.getLevel() * 0.05 // Weaponless makes atk 
+        player.atk = 10 + weaponlessBar.getLevel() * 0.05; // Weaponless makes atk 
         displayStats(player, "Player");
 
     } else if (activeBar === "dagger") {
         daggerBar.update();
         document.getElementById("daggerLevelDisplay").innerText = "Dagger Level: " + daggerBar.getLevel();
-        player.atk = 15 + daggerBar.getLevel() * 0.1
+        player.atk = 15 + daggerBar.getLevel() * 0.1;
         displayStats(player, "Player");
-    
 
+    } else if (activeBar === "mace") {
+        maceBar.update();
+        document.getElementById("maceLevelDisplay").innerText = "Mace Level: " + maceBar.getLevel();
+        player.atk = 20 + maceBar.getLevel() * 0.2;
+        displayStats(player, "Player");
+
+    } else if (activeBar === "axe") {
+        axeBar.update();
+        document.getElementById("axeLevelDisplay").innerText = "Axe Level: " + axeBar.getLevel();
+        player.atk = 40 + axeBar.getLevel() * 0.3;
+        displayStats(player, "Player");
 
 
 
@@ -107,17 +149,32 @@ function updateProgress() {
         discoverBar.update();
         document.getElementById("discoverLevelDisplay").innerText = "Discover Level: " + discoverBar.getLevel();
 
-    } else if (activeBar === "regen") {
-        regenBar.update();
-        document.getElementById("regenLevelDisplay").innerText = "Regenerate Level: " + regenBar.getLevel();
+    } else if (activeBar === "gains") {
+        gainsBar.update();
+        document.getElementById("gainsLevelDisplay").innerText = "Gains Level: " + gainsBar.getLevel();
     }
 };
 
 
 // Setting interval higher = worse transitioning rate
-setInterval(updateProgress, 10);
+setInterval(updateProgress, 20);
 
+// Time system - life expectancy 40 years (equals around 2 hours real time)
+let day = 0;
+let year = 14;
 
+setInterval(() => {
+    day += 1;
+    updateTime();
+    document.getElementById("displayTime").innerText = " Days: " + day + " Years: " + year;
+}, 500);
+
+function updateTime() {
+    if (day >= 365) {
+        day = 0;
+        year += 1;
+    };
+};
 
 // The buttons for progress bars, and their messages
 document.getElementById("relaxbtn").addEventListener("click", () => {
@@ -127,7 +184,7 @@ document.getElementById("relaxbtn").addEventListener("click", () => {
 document.getElementById("focusbtn").addEventListener("click", () => {
     activeBar = "focus";
 });
-
+// Weapons
 document.getElementById("weaponlessbtn").addEventListener("click", () => {
     activeBar = "weaponless";
 });
@@ -136,13 +193,22 @@ document.getElementById("daggerbtn").addEventListener("click", () => {
     activeBar = "dagger";
 });
 
+document.getElementById("macebtn").addEventListener("click", () => {
+    activeBar = "mace";
+});
+
+document.getElementById("axebtn").addEventListener("click", () => {
+    activeBar = "axe";
+});
+// Discover
 document.getElementById("discoverbtn").addEventListener("click", () => {
     activeBar = "discover";
 });
 
-document.getElementById("regenbtn").addEventListener("click", () => {
-    activeBar = "regen";
+document.getElementById("gainsbtn").addEventListener("click", () => {
+    activeBar = "gains";
 });
+
 
 
 
@@ -152,40 +218,41 @@ class RPGchar {
     this.name = name;
     this.hp = hp;
     this.maxhp = maxhp;
-    this.regenrate = regenrate
+    this.regenrate = regenrate;
     this.mana = mana;
     this.atk = atk;
     this.def = def;
     this.lvl = lvl;
     this.xp = xp;
-    }
+    };
 
     attackTarget(target) {
         const damagedone = (Math.max(this.atk - target.def, 1) * 100) / 100; // defense reduces damage by (def) amount
         target.hp -= damagedone;
         target.hp = Math.round(target.hp * 100) / 100;
-        logMessage(`You attacked for ${damagedone} damage`)
+        logMessage(`You attacked for ${damagedone} damage`);
         if (target.hp <= 0) {
-            this.gainXP(target)
-            target.reset()
-            logMessage("The enemy has been slain!")        
-        }
+            this.gainXP(target);
+            target.reset();
+            logMessage("The enemy has been slain!");
+            switchEnemy();
+        };
         const damagerec = Math.max(target.atk - this.def, 1);
         this.hp -= damagerec;
         this.hp = Math.round(this.hp * 100) / 100;
-        logMessage(`You recieved ${damagerec} damage`)
+        logMessage(`You recieved ${damagerec} damage`);
         if (this.hp <= 0) {
-            this.reset()
-            logMessage("You have died.")
-        }
+            this.reset();
+            logMessage("You have died.");
+        };
         if (this.hp <= this.maxhp) {
-            this.hp += this.regenrate
-        }
+            this.hp += this.regenrate;
+        };
         
 
 
         // log this
-    }
+    };
 
     gainXP(target) {
         this.xp += Math.min(target.lvl*10);
@@ -200,48 +267,65 @@ class RPGchar {
 
 
 
-    lvlUp() {
-        this.lvl++; /*
-        this.hp += 1;
-        this.atk += 5;
-        this.def += 3;
-        this.mana += 10; */
+    lvlUp() { // Stats you gain per level up
+        this.lvl++;
+        this.atk += 3;
+        this.def += 0.5;
         this.xp = 0;
-
-        //log this
-    }
-}
+    };
+};
 
 
 // The player
-const player = new RPGchar ("Player", 100, 100, 0, 0, 10, 0, 1, 0)
+const player = new RPGchar ("Player", 100, 100, 0, 0, 10, 0, 1, 0);
 let currentEnemy = new RPGchar("None", 0, 0, 0, 0, 0, 0, 0, 0);
 
-// enemies
-const wilddog = new RPGchar ("Wild Dog", 75, 75, 0, 0, 15, 1, 1, 0)
-const goblin = new RPGchar ("Goblin", 125, 125, 1, 0, 20, 3, 1, 0)
-const slime = new RPGchar ("Slime", 200, 200, 3, 0, 10, 2, 1, 0)
+// Enemies
+const wilddog = new RPGchar ("Wild Dog", 75, 75, 0, 0, 15, 1, 2, 0);
+const wolf = new RPGchar ("Wolf", 100, 100, 0, 0, 20, 2, 5, 0);
+const grizzlybear = new RPGchar ("Grizzly Bear", 200, 200, 0, 0, 25, 2, 10, 0);
+const angrytownsfolk = new RPGchar ("Angry Townsfolk", 300, 300, 0, 0, 30, 3, 15, 0);
 
 
 
+const enemies = [wilddog, wolf, grizzlybear];
 
-function switchEnemy(newEnemy) {
+function switchEnemy () {
+    newEnemy = enemies[Math.floor(Math.random() * enemies.length)];
     currentEnemy = newEnemy;
     displayStats(currentEnemy, "Target");
-    logMessage(`A ${newEnemy.name} appears!`);
-}
-
-const enemies = [slime, goblin, wilddog];
-currentEnemy = enemies[Math.floor(Math.random() * enemies.length)];
+    logMessage(`A ${currentEnemy.name} appears!`);
+};
 
 
 
+// Attack Interval system (auto attack)
+let attackinterval;
+const button = document.getElementById("attacknstop");
+manaperturn = Math.round(relaxBar.level*0.1*100)/100;
+
+button.addEventListener("click", () => {
+    const isntAttacking = button.classList.contains("stopattacking");
+    
+    if (isntAttacking) {
+        button.classList.add("attack");
+        button.classList.remove("stopattacking");
+        button.innerText = "Stop Attacking";
+        
+        attackinterval = setInterval(() => {
+            player.attackTarget(currentEnemy);
+            displayStats(currentEnemy, "Target");
+            displayStats(player, "Player");
+            player.mana += manaperturn; // Every level of RelaxBar adds +0.1 for mana generation. Mana generates every attack
+        }, 1000);
 
 
-document.getElementById("attack1").addEventListener("click", () => {
-    player.attackTarget(currentEnemy);
-    displayStats(currentEnemy, "Target");
-    displayStats(player, "Player");
+    } else {
+        button.classList.remove("attack");
+        button.classList.add("stopattacking");
+        button.innerText = "Attack";
+        clearInterval(attackinterval);
+    };
 
 });
 
@@ -253,9 +337,9 @@ for (let key in player) {
         const el = document.getElementById(key);
         if (el) {
             el.innerText = `${key}: ${value}`;
-        }
-    }
-}
+        };
+    };
+};
 
 function displayStats(charObj, prefix) {
     for (let key in charObj) {
@@ -263,10 +347,10 @@ function displayStats(charObj, prefix) {
             const el = document.getElementById(`${prefix}${key}`);
             if (el) {
                 el.innerText = `${key}: ${charObj[key]}`;
-            }
-        }
-    }
-}
+            };
+        };
+    };
+};
 
 displayStats(player, "Player");
 displayStats(currentEnemy, "Target");
@@ -274,11 +358,8 @@ displayStats(currentEnemy, "Target");
 
 
 
-
-
-
 // Tab code
-const TabButtons= document.querySelectorAll(".tab-button")
+const TabButtons= document.querySelectorAll(".tab-button");
 
 TabButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -298,47 +379,37 @@ TabButtons.forEach(button => {
 // Chatbox code
 const chatbox = document.getElementById("chatbox");
 
-    function logMessage(text) {
-        const msg = document.createElement("div");
-        msg.classList.add("message");
-        msg.textContent = text;
-        chatbox.appendChild(msg);
-        // Max message count (set it)
-        if (chatbox.children.length > 8) {
-            chatbox.removeChild(chatbox.children[0]);
-      }
-    }
-
-
-
-
-
-
+function logMessage(text) {
+    const msg = document.createElement("div");
+    msg.classList.add("message");
+    msg.textContent = text;
+    chatbox.appendChild(msg);
+    // Max message count (set it)
+    if (chatbox.children.length > 8) {
+        chatbox.removeChild(chatbox.children[0]);
+    };
+};
 
 
 
 /*
-V1.11.1 - Weaponless now increases atk power by 0.05 + 10
-V1.11.2 - Added basic stuff to the bar and button, and modified the border
-
-V1.11.3 - Fixed a little error with the Target HP display after upgrading weaponless combat
-V1.12 - Added chatbox from Evil Idle (took code from my game)
-V1.12.1 - Added 3 messages for when you did bars
-V1.12.2 - Added messages in combat (4 msg.)
-V1.13 - Added discover bar
-V1.13.1 - Added information with discover bar
-V1.14 - Added regen bar with fixings
-V1.14.1 - Adding regen to combat along with target
-V1.14.2 - Fixed small error
-V1.14.3 - Made the regen bar show AFTER you reach X focus
-V1.15 - Added dagger bar with fixings
-V1.15.1 - Dagger is now locked until level 25 weaponless
-V1.15.1.1 - Fixed quick error
-V1.16 - Added 3 new enemies and random combat system
-V1.16.1 - Focus bar now updates speed for all bars quicker
-V1.16.2 - Added messages when unlocking new bars
-V1.16.3 - When leveling up in a bar, says on message log
-V1.16.3.1 - Deleted all switching bars messages
-V1.16.3.2 - Fixed small error with damagedone
-V1.16.4 - Rounded damage done from error (fixed)
+V1.17 - Added Mace weapon and fixings
+V1.18 - Added axe weapon and fixings
+V1.18.1 - Fixed error with logMessage and dagger+ descriptions
+V1.18.2 - Changed descriptions
+V1.19 - Deleted supernatural enemies (zombie, skeleton, etc.) and replaced with new enemies (grizzlybear, wild dog, wolf)
+V1.19.1 - Shoved all (level: X) text into bars themselves
+V1.19.2 - Cleaned up <div>'s 
+V1.19.3 - Made the bars clickable, and removed buttons (bars replaced buttons)
+V1.19.4 - Added time system
+V1.20 - Added story part
+V1.20.1 - Added leveling up, and fixed enemy randomizing (made it work :O)
+V1.20.1.1 - Added townsfolk (another enemy)
+V1.20.2 - Added auto attacking
+V1.20.3 - Fixed errors with the attacking
+V1.20.4 - Pushed all unlocks into story
+V1.21 - Added a glow effect when new story bits are unlocked
+V1.21.1 - Modified and combined story bits
+V1.21.2 - Added mana generation (relax has an effect now) per turn
+V1.21.2.1 - Fixed glitches
 */

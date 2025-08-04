@@ -9,51 +9,58 @@
 <body>
 
     <h1>Idle Power</h1>
+    <p id = "displayTime">Days: 0 Years: 14</p>
 
     <div class = "tabs"> <!-- Buttons that hold the tabs  -->
         <button class="tab-button" data-tab = "training">Training</button>
         <button class="tab-button" data-tab = "combat">Combat</button>
+        <button class="tab-button" data-tab = "story" id = "storybtn">Story</button>
     </div>
         
 
     <nav id = "training" class = "tab-content"> <!-- Border that holds all the training together-->
         
         <section id = "growth">
-            <button title = "Relax increase your mana generation speed" id = "relaxbtn">Relax</button>
 
-            <div class="progress-container">
+            <div class="progress-container" id = "relaxbtn" title = "Relax increase your mana generation speed">
                 <div class="progress-bar" id="relax"></div>
+                <span class = "progress-text" id = "relaxLevelDisplay">Relax Level: 1</span>
             </div>
-
-            <p id = "relaxLevelDisplay">Relax Level: 1</p>
             
-            <button title = "Focus will increase your learning speed on other subjects" id = "focusbtn">Focus</button>
-
-            <div class="progress-container">
+            <div class="progress-container" title = "Focus will increase your learning speed on other subjects" id = "focusbtn">
                 <div class="progress-bar" id="focus"></div>
+                <span class= "progress-text" id = "focusLevelDisplay">Focus Level: 1</span>
             </div>
-            
-            <p id = "focusLevelDisplay">Focus Level: 1</p> 
+
         </section>
 
-        <section id = "Weapons">
-            <button title = "You're poor, and are learning how to fight" id = "weaponlessbtn">Weaponless Combat</button>
 
-            <div class = "progress-container">
+        <section id = "weapons">
+
+            <div class = "progress-container" title = "Learn the way of the fist!" id = "weaponlessbtn">
                 <div class = "progress-bar" id ="weaponless"></div>
+                <span class = "progress-text" id = "weaponlessLevelDisplay">Weaponless Level: 1</span>
             </div>
 
-            <p id = "weaponlessLevelDisplay">Weaponless Level: 1</p>
-
-
             <div class = "hidden" id = "daggerinf">
-                <button title = "A decent weapon, but short range" id = "daggerbtn">Dagger Combat</button>
-
-                <div class = "progress-container">
+                <div class = "progress-container" title = "Master the quick but sharp blade" id = "daggerbtn">
                     <div class = "progress-bar" id ="dagger"></div>
+                    <span class = "progress-text" id = "daggerLevelDisplay">Dagger Level: 1</span>
                 </div>
+            </div>
 
-                <p id = "daggerLevelDisplay">Dagger Level: 1</p>
+            <div class = "hidden" id = "maceinf">
+                <div class = "progress-container" title = "Swing 'round and 'round, but don't cut yourself!" id = "macebtn">
+                    <div class = "progress-bar" id ="mace"></div>
+                    <span class = "progress-text" id = "maceLevelDisplay">Mace Level: 1</span>
+                </div>
+            </div>
+
+            <div class = "hidden" id = "axeinf">
+                <div class = "progress-container" title = "You aren't JUST going to be chopping trees..." id = "axebtn">
+                    <div class = "progress-bar" id ="axe"></div>
+                    <span class = "progress-text" id = "axeLevelDisplay">Axe Level: 1</span>
+                </div>
             </div>
 
         </section>
@@ -61,37 +68,33 @@
 
         <section id = "bloodline">
 
-            <button title = "Discover things about you, and your family" id = "discoverbtn">Discover</button>
-
-            <div class = "progress-container">
+            <div class = "progress-container" title = "Discover things about you, and your family" id = "discoverbtn">
                 <div class = "progress-bar" id ="discover"></div>
+                <span class = "progress-text" id = "discoverLevelDisplay">Discover Level: 1</span>
             </div>
 
-            <p id = "discoverLevelDisplay">Discover Level: 1</p>
 
-            <div class = "hidden" id = "regeninf">
-                <button title = "I feel the power coursing through me" id = "regenbtn">Regenarate</button>
-
-                <div class = "progress-container">
-                    <div class = "progress-bar" id ="regen"></div>
+            <div class = "hidden" id = "gainsinf">
+                <div class = "progress-container" title = "I feel the power coursing through me" id = "gainsbtn">
+                    <div class = "progress-bar" id ="gains"></div>
+                    <span class = "progress-text" id = "gainsLevelDisplay">Gains Level: 1</span>
                 </div>
-
-                <p id = "regenLevelDisplay">Regenerate Level: 1</p>
             </div>
+
 
         </section>
-
-
-
     </nav>
 
 
 
-
-
     <nav id = "combat" class = "tab-content"> <!-- Combat tab  -->
+    
+        <div>
+            <p id = "chatboxtitle">Message Log</p>
+            <div id ="chatbox"></div>
+        </div>
 
-        <button id = "attack1">Attack</button>
+        <button id = "attacknstop">Attack</button>
 
 
         <p id = "Playerhp"></p>
@@ -113,9 +116,23 @@
 
     </nav>
 
+    <nav id = "story" class = "tab-content"> <!-- story tab, where all the flavor text is -->
+        
+        <p class = "hidden" id = "gainsstory">You feel a weird sensation of power flow throughout your body (Unlocked Gains)</p>
+
+        <p class = "hidden" id = "daggerstory">You have reached a good degree of mastery on weaponless combat (Unlocked dagger combat)</p>
+        <p class = "hidden" id = "macestory">You have got bored of dagger combat...let's go crazy (Unlocked mace combat)</p>
+        <p class = "hidden" id = "axestory">Mace's were interesting weapons...but not that hard to learn. Axes it is! (Unlocked Axe combat)</p>
 
 
-    <div id ="chatbox"></div>
+
+
+
+    </nav>
+
+
+
+
 
 </body>
 
